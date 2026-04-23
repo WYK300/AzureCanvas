@@ -1,15 +1,11 @@
 package org.neonangellock.azurecanvas.model.storymap;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "story_maps")
 @ToString
@@ -20,9 +16,6 @@ public class StoryMap {
     private UUID storyMapId;
 
     @OneToOne(mappedBy = "storyMap", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    // mappedBy points to the field in StoryMapStats that owns the relationship.
-    // CascadeType.ALL: changes in StoryMap cascade to StoryMapStats (e.g., delete)
-    // FetchType.LAZY: Only load StoryMapStats when explicitly accessed.
     private StoryMapStats stats;
 
     @Column(name = "authorId", nullable = false)
@@ -50,4 +43,23 @@ public class StoryMap {
     protected void onUpdate() {
         updatedAt = OffsetDateTime.now();
     }
+
+    public UUID getStoryMapId() { return storyMapId; }
+    public void setStoryMapId(UUID storyMapId) { this.storyMapId = storyMapId; }
+    public StoryMapStats getStats() { return stats; }
+    public void setStats(StoryMapStats stats) { this.stats = stats; }
+    public UUID getAuthorId() { return authorId; }
+    public void setAuthorId(UUID authorId) { this.authorId = authorId; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+    public String getCoverImageUrl() { return coverImageUrl; }
+    public void setCoverImageUrl(String coverImageUrl) { this.coverImageUrl = coverImageUrl; }
+    public OffsetDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
+    public OffsetDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(OffsetDateTime updatedAt) { this.updatedAt = updatedAt; }
+    public java.util.List<StoryMapLocation> getLocations() { return locations; }
+    public void setLocations(java.util.List<StoryMapLocation> locations) { this.locations = locations; }
 }

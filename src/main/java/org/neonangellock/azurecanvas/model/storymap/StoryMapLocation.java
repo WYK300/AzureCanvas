@@ -1,16 +1,12 @@
 package org.neonangellock.azurecanvas.model.storymap;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-@Setter
-@Getter
 @Entity
 @Table(name = "story_map_locations")
 @ToString
@@ -39,7 +35,7 @@ public class StoryMapLocation {
     @Column(name = "imageUrl")
     private String imageUrl;
 
-    @Column(name = "s_order") // order is a reserved word in many DBs
+    @Column(name = "s_order")
     private Integer order;
 
     @Column(name = "createdAt", nullable = false, updatable = false)
@@ -52,4 +48,25 @@ public class StoryMapLocation {
     protected void onUpdate() {
         updatedAt = OffsetDateTime.now();
     }
+
+    public UUID getLocationId() { return locationId; }
+    public void setLocationId(UUID locationId) { this.locationId = locationId; }
+    public StoryMap getStoryMap() { return storyMap; }
+    public void setStoryMap(StoryMap storyMap) { this.storyMap = storyMap; }
+    public BigDecimal getLat() { return lat; }
+    public void setLat(BigDecimal lat) { this.lat = lat; }
+    public BigDecimal getLng() { return lng; }
+    public void setLng(BigDecimal lng) { this.lng = lng; }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public Integer getOrder() { return order; }
+    public void setOrder(Integer order) { this.order = order; }
+    public OffsetDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
+    public OffsetDateTime getUpdatedAt() { return updatedAt; }
+    public void setUpdatedAt(OffsetDateTime updatedAt) { this.updatedAt = updatedAt; }
 }

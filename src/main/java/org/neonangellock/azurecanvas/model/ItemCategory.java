@@ -1,14 +1,11 @@
 package org.neonangellock.azurecanvas.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "item_categories")
-@Getter @Setter
 public class ItemCategory {
 
     @Id
@@ -21,4 +18,11 @@ public class ItemCategory {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    public UUID getCategoryId() { return categoryId; }
+    public void setCategoryId(UUID categoryId) { this.categoryId = categoryId; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

@@ -23,6 +23,60 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+class EmptyTreeHoleSearchHits implements SearchHits<EsTreeHole> {
+    public long getTotalHits() {
+        return 0;
+    }
+
+    public org.springframework.data.elasticsearch.core.TotalHitsRelation getTotalHitsRelation() {
+        return org.springframework.data.elasticsearch.core.TotalHitsRelation.EQUAL_TO;
+    }
+
+    public float getMaxScore() {
+        return 0f;
+    }
+
+    public Suggest getSuggest() {
+        return null;
+    }
+
+    public List<org.springframework.data.elasticsearch.core.SearchHit<EsTreeHole>> getSearchHits() {
+        return Collections.emptyList();
+    }
+
+    public org.springframework.data.elasticsearch.core.SearchHit<EsTreeHole> getSearchHit(int index) {
+        throw new IndexOutOfBoundsException();
+    }
+
+    public List<EsTreeHole> getSearchHitsContents() {
+        return Collections.emptyList();
+    }
+
+    public boolean hasSearchHits() {
+        return false;
+    }
+
+    public org.springframework.data.elasticsearch.core.AggregationsContainer<?> getAggregations() {
+        return null;
+    }
+
+    public <T> T getAggregation(String name, Class<T> aClass) {
+        return null;
+    }
+
+    public SearchShardStatistics getSearchShardStatistics() {
+        return null;
+    }
+
+    public String getPointInTimeId() {
+        return null;
+    }
+
+    public java.time.Duration getExecutionDuration() {
+        return java.time.Duration.ZERO;
+    }
+}
+
 @Service
 public class EsTreeHoleServiceImpl implements EsTreeHoleService {
 
@@ -112,72 +166,7 @@ public class EsTreeHoleServiceImpl implements EsTreeHoleService {
         }
 
         // 返回空结果
-        return new SearchHits<EsTreeHole>() {
-            @Override
-            public long getTotalHits() {
-                return 0;
-            }
-
-            @Override
-            public org.springframework.data.elasticsearch.core.TotalHitsRelation getTotalHitsRelation() {
-                return org.springframework.data.elasticsearch.core.TotalHitsRelation.EQUAL_TO;
-            }
-
-            @Override
-            public float getMaxScore() {
-                return 0f;
-            }
-
-            @Override
-            public Suggest getSuggest() {
-                return null;
-            }
-
-            @Override
-            public List<org.springframework.data.elasticsearch.core.SearchHit<EsTreeHole>> getSearchHits() {
-                return Collections.emptyList();
-            }
-
-            @Override
-            public org.springframework.data.elasticsearch.core.SearchHit<EsTreeHole> getSearchHit(int index) {
-                throw new IndexOutOfBoundsException();
-            }
-
-            @Override
-            public List<EsTreeHole> getSearchHitsContents() {
-                return Collections.emptyList();
-            }
-
-            @Override
-            public boolean hasSearchHits() {
-                return false;
-            }
-
-            @Override
-            public org.springframework.data.elasticsearch.core.AggregationsContainer<?> getAggregations() {
-                return null;
-            }
-
-            @Override
-            public <T> T getAggregation(String name, Class<T> aClass) {
-                return null;
-            }
-
-            @Override
-            public SearchShardStatistics getSearchShardStatistics() {
-                return null;
-            }
-
-            @Override
-            public String getPointInTimeId() {
-                return null;
-            }
-
-            @Override
-            public java.time.Duration getExecutionDuration() {
-                return java.time.Duration.ZERO;
-            }
-        };
+        return new EmptyTreeHoleSearchHits();
     }
 
     @Override
